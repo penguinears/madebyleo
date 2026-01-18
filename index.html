@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MadeByLeoHome</title>
+<title>Leo</title>
 
 <style>
 :root {
@@ -54,6 +54,23 @@ p {
   color: var(--fg);
 }
 
+/* button */
+#portal {
+  margin-top: 32px;
+  background: none;
+  border: 1px solid var(--fg);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#portal:hover {
+  opacity: 1;
+  background: var(--fg);
+  color: var(--bg);
+}
+
 /* canvas */
 canvas {
   position: fixed;
@@ -91,25 +108,26 @@ canvas {
   </h1>
 
   <p contenteditable="true">
-    here at made by Leo, we make cool intresting sites! Trying to make the
-    web fun agien.
+    We make cool sites! Trying to make the web fun agien.
   </p>
 
   <p contenteditable="true">
-    If u press the button it will take u to one of our cool sites!.
+    Press the button to go to a random site.
   </p>
 
   <p contenteditable="true">
-    you can keep adding paragraphs. click and type.
+    you can edit and type here to.
   </p>
+
+  <button id="portal">go somewhere</button>
 </div>
 
 <div id="footer">
   <a href="https://iggle.vercel.app" target="_blank">iggle.vercel.app</a>
-  <a href="https://chickenburgergames.vercel.app" target="_blank">og unblocked game site</a>
 </div>
 
 <script>
+/* ========= background ========= */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
@@ -121,7 +139,6 @@ function resize() {
 resize();
 addEventListener("resize", resize);
 
-/* subtle background motion */
 const dots = Array.from({ length: 60 }, () => ({
   x: Math.random() * w,
   y: Math.random() * h,
@@ -149,6 +166,22 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
+
+/* ========= random site button ========= */
+const sites = [
+  "https://iggle.vercel.app",
+  "https://fps-298fjnzxk-fishs-projects-b6ab5fa8.vercel.app/",
+  "https://indianscamcallcenterclicker.vercel.app/",
+  "https://thethemonkeygame.vercel.app",
+  "https://thechessweb.vercel.app",
+  "https://antiantigooners.vercel.app",
+  "https://typegame-seven.vercel.app/"
+];
+
+document.getElementById("portal").onclick = () => {
+  const site = sites[Math.floor(Math.random() * sites.length)];
+  window.location.href = site;
+};
 </script>
 
 </body>
