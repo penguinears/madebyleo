@@ -1,88 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Made by Leo</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css">
-  <style>
-    body {
-      font-family: 'Courier New', monospace;
-      background-color: #0f172a;
-      color: #e2e8f0;
-    }
-    .ascii-art {
-      white-space: pre;
-      font-size: 1rem;
-      text-align: center;
-      line-height: 1.1;
-    }
-    .btn {
-      transition: all 0.3s ease;
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-      background-color: #2563eb;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Untitled</title>
+
+<style>
+:root {
+  --bg: #fafafa;
+  --fg: #111;
+  --muted: #666;
+  --accent: #3b82f6;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+}
+
+/* layout */
+#wrap {
+  position: relative;
+  max-width: 720px;
+  margin: 80px auto;
+  padding: 0 24px;
+  z-index: 2;
+}
+
+/* text */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+/* editable text */
+[contenteditable] {
+  outline: none;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+}
+
+[contenteditable]:focus {
+  border-left-color: var(--accent);
+  color: var(--fg);
+}
+
+/* canvas */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* footer */
+#footer {
+  position: fixed;
+  bottom: 14px;
+  right: 18px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+#footer a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
-<body class="flex flex-col min-h-screen">
 
-  <!-- ASCII Art Hero -->
-  <section class="py-16 text-center bg-gradient-to-r from-blue-900 to-blue-700">
-    <div class="ascii-art text-white mb-8">
-      <pre>
- _   _      _ _        __        __         _     _ 
-| | | | ___| | | ___   \ \      / /__  _ __| | __| |
-| |_| |/ _ \ | |/ _ \   \ \ /\ / / _ \| '__| |/ _` |
-|  _  |  __/ | | (_) |   \ V  V / (_) | |  | | (_| |
-|_| |_|\___|_|_|\___( )   \_/\_/ \___/|_|  |_|\__,_|
-                    |/                                
-      </pre>
-    </div>
-    <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-6">Sleek digital experiences crafted by <strong>Made by Leo</strong>. Currently building <strong>Moments</strong> to capture and celebrate your memories.</p>
-    <a href="#projects" class="inline-block bg-blue-600 text-white py-3 px-6 rounded font-bold btn">Explore Projects</a>
-  </section>
+<body>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 container mx-auto px-4">
-    <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Our Projects</h3>
-    <div class="grid md:grid-cols-2 gap-10">
-      <div class="bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition">
-        <h4 class="text-2xl font-semibold mb-4 text-blue-400">Moments</h4>
-        <p>A platform to capture, organize, and celebrate your life’s moments. Moments is designed for simplicity, usability, and to help you cherish memories with family and friends.</p>
-      </div>
-      <div class="bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition">
-        <h4 class="text-2xl font-semibold mb-4 text-blue-400">Future Projects</h4>
-        <p>We’re always innovating. Stay tuned for more projects under Made by Leo that simplify and enhance digital experiences.</p>
-      </div>
-    </div>
-  </section>
+<canvas id="bg"></canvas>
 
-  <!-- About Section -->
-  <section id="about" class="bg-gray-900 py-20">
-    <div class="container mx-auto px-4 text-center">
-      <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">About Made by Leo</h3>
-      <p class="max-w-2xl mx-auto text-gray-300">Made by Leo is a forward-thinking digital company that builds creative and meaningful applications. We focus on combining technology, design, and user experience to make a lasting impact.</p>
-    </div>
-  </section>
+<div id="wrap">
+  <h1 contenteditable="true">
+    this is a page i can think on
+  </h1>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 container mx-auto px-4 text-center">
-    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">Contact Us</h3>
-    <p class="mb-6 text-gray-300">Reach out at <a href="mailto:madebyleoapps@gmail.com" class="text-blue-400 underline">madebyleoapps@gmail.com</a> for inquiries or collaborations.</p>
-    <form class="max-w-xl mx-auto flex flex-col gap-4">
-      <input type="text" placeholder="Your Name" class="p-3 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-800 text-white">
-      <input type="email" placeholder="Your Email" class="p-3 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-800 text-white">
-      <textarea placeholder="Your Message" rows="5" class="p-3 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-800 text-white"></textarea>
-      <button type="submit" class="bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">Send Message</button>
-    </form>
-  </section>
+  <p contenteditable="true">
+    write whatever you want here. notes, thoughts, half ideas, stuff that
+    doesn’t need to be finished. it’s not trying to be impressive.
+  </p>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-400 py-6 text-center mt-auto">
-    <p>&copy; 2025 Made by Leo. All rights reserved.</p>
-  </footer>
+  <p contenteditable="true">
+    the background moves a little so it feels alive, but it’s not the point.
+    the text is the point.
+  </p>
+
+  <p contenteditable="true">
+    you can keep adding paragraphs. click and type.
+  </p>
+</div>
+
+<div id="footer">
+  <a href="https://iggle.vercel.app" target="_blank">iggle.vercel.app</a>
+</div>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() {
+  w = canvas.width = innerWidth;
+  h = canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize", resize);
+
+/* subtle background motion */
+const dots = Array.from({ length: 60 }, () => ({
+  x: Math.random() * w,
+  y: Math.random() * h,
+  vx: (Math.random() - 0.5) * 0.2,
+  vy: (Math.random() - 0.5) * 0.2,
+  r: Math.random() * 1.5 + 0.5
+}));
+
+function loop() {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "#00000010";
+
+  dots.forEach(d => {
+    d.x += d.vx;
+    d.y += d.vy;
+
+    if (d.x < 0 || d.x > w) d.vx *= -1;
+    if (d.y < 0 || d.y > h) d.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
 
 </body>
 </html>
